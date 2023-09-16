@@ -11,7 +11,7 @@ from yellowbrick.classifier import ConfusionMatrix
 from sklearn import tree
 
 #Leitura do Arquivo CSV:
-base = pd.read_csv('restaurante.csv', usecols=['Instancia', 'Alternativo', 'Bar','Sex/Sab','Fome','Cliente','Preco','Chuva','Res','Tipo','Tempo','Conclusao'])
+base = pd.read_csv('Lista2/restaurante.csv', usecols=['Instancia', 'Alternativo', 'Bar','Sex/Sab','Fome','Cliente','Preco','Chuva','Res','Tipo','Tempo','Conclusao'])
 
 """
 print(base)
@@ -28,7 +28,7 @@ print(np.unique(base['Conclusao'], return_counts=True))
 #Separação de Atributos de Entrada e Classe:
 X_prev = base.iloc[:, 0:11].values #Seleciona todas as linhas do DataFrame e extrai as colunas de 0 até 9
 y_classe = base.iloc[:, 11].values
-print(X_prev)
+#print(X_prev)
 """
 #Criação de um novo DataFrame por meio da base
 X_prev_label = base.iloc[:, 0:10]
@@ -44,7 +44,7 @@ print(y)
 
 #Tratamento de dados categóricos
 lb = LabelEncoder() #usado para transformar rótulos de classes ou categorias em números inteiros
-
+print(X_prev[:,0])
 X_prev[:,0] = lb.fit_transform(X_prev[:,1]) 
 X_prev[:,1] = lb.fit_transform(X_prev[:,2]) 
 X_prev[:,2] = lb.fit_transform(X_prev[:,3]) 
@@ -56,14 +56,14 @@ X_prev[:,7] = lb.fit_transform(X_prev[:,8])
 X_prev[:,8] = X_prev[:,9]
 X_prev[:,9] = lb.fit_transform(X_prev[:,10])
 X_prev = X_prev[:, :-1] #Apaga a ultima coluna (10), que agora esta alocada na posição 9
-print(X_prev)
+#print(X_prev)
 
 #Binarizar atributos não ordinais - OneHotEncoder
 #print(len(np.unique(base['Tipo'])))
 
 onehotencoder_restaurante = ColumnTransformer(transformers=[('OneHot', OneHotEncoder(), [8])], remainder='passthrough') #Determina a coluna que o OneHotEncoder será aplicado
 X_prev = onehotencoder_restaurante.fit_transform(X_prev) #Aplica o ColumnTransformer aos dados de entrada
-
+print(X_prev)
 """
 A função é usada para dividir os dados transformados (X_prev) e os rótulos (y_classe) em conjuntos 
 de treinamento e teste. Utilizando 80% para treinamento e 20% para teste.

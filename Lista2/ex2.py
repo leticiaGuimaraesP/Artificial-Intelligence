@@ -12,7 +12,7 @@ from yellowbrick.classifier import ConfusionMatrix
 from sklearn import tree
 
 #Leitura do Arquivo CSV:
-base = pd.read_csv('restaurante.csv', usecols=['Instancia', 'Alternativo', 'Bar','Sex/Sab','Fome','Cliente','Preco','Chuva','Res','Tipo','Tempo','Conclusao'])
+base = pd.read_csv('Lista2/restaurante.csv', usecols=['Instancia', 'Alternativo', 'Bar','Sex/Sab','Fome','Cliente','Preco','Chuva','Res','Tipo','Tempo','Conclusao'])
 
 #Separação de Atributos de Entrada e Classe:
 X_prev = base.iloc[:, 0:11].values #Seleciona todas as linhas do DataFrame e extrai as colunas de 0 até 9
@@ -32,7 +32,7 @@ X_prev[:,7] = lb.fit_transform(X_prev[:,8])
 X_prev[:,8] = X_prev[:,9]
 X_prev[:,9] = X_prev[:,10]
 X_prev = X_prev[:, :-1] #Apaga a ultima coluna (10), que agora esta alocada na posição 9
-print(X_prev)
+#print(X_prev)
 #Binarizar atributos não ordinais - OneHotEncoder
 
 onehotencoder_restaurante = ColumnTransformer(transformers=[('OneHot', OneHotEncoder(), [4, 5, 8, 9])], remainder='passthrough') #Determina a coluna que o OneHotEncoder será aplicado

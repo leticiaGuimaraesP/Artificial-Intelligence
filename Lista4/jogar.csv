@@ -1,0 +1,14 @@
+Aparencia,Temperatura,Umidade,Ventando,Jogar
+Sol,Quente,Alta,Nao,Nao
+Sol,Quente,Alta,Sim,Nao
+Nublado,Quente,Alta,Nao,Sim
+Chuva,Agradavel,Alta,Nao,Sim
+Chuva,Fria,Normal,Nao,Sim
+Chuva,Fria,Normal,Sim,Nao
+Nublado,Fria,Normal,Sim,Sim
+Sol,Agradavel,Alta,Nao,Nao
+Sol,Fria,Normal,Nao,Sim
+Chuva,Agradavel,Normal,Nao,Sim
+Sol,Agradavel,Normal,Sim,Sim
+Nublado,Agradavel,Alta,Sim,Sim
+Nublado,Quente,Normal,Nao,Sim
