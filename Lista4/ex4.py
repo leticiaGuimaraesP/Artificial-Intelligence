@@ -11,7 +11,6 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from yellowbrick.classifier import ConfusionMatrix
 from sklearn import tree
 
-# Criando o dataframe de exemplo
 df = pd.read_csv('Lista4/jogar.csv')
 
 X_prev = df.iloc[:, 0:4].values #Seleciona todas as linhas do DataFrame e extrai as colunas de 0 até 9
@@ -22,7 +21,7 @@ X_prev = onehotencoder_restaurante.fit_transform(X_prev) #Aplica o ColumnTransfo
 
 X_train, X_test, y_train, y_test = train_test_split(X_prev, y_classe, test_size=0.2, random_state=23)
 
-modelo = RandomForestClassifier(n_estimators=100, criterion='entropy')  # Número de árvores é definido para 100 (ajuste conforme necessário)
+modelo = RandomForestClassifier(n_estimators=100, criterion='entropy')
 Y = modelo.fit(X_train, y_train)
 
 previsoes = modelo.predict(X_test)
@@ -35,5 +34,5 @@ cm.fit(X_train, y_train)
 cm.score(X_test, y_test)
 
 #Plotando a árvore
-tree.plot_tree(modelo.estimators_[0])  # Estamos plotando a primeira árvore do Random Forest
+tree.plot_tree(modelo.estimators_[0])
 plt.show()
