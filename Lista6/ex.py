@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import davies_bouldin_score, silhouette_score
 from sklearn.preprocessing import MinMaxScaler
 from kneed import KneeLocator
 
@@ -42,13 +42,10 @@ kl.elbow
 kmeans = KMeans(n_clusters=3, random_state=0)
 y_kmeans = kmeans.fit_predict(X)
 
-#Purity Score
-def purity_score(y_true, y_pred):
-    contingency_matrix = pd.crosstab(y_true, y_pred)
-    return np.sum(np.amax(contingency_matrix, axis=0)) / np.sum(contingency_matrix)
 
-purity = purity_score(db['class'], y_kmeans)
-print("Purity Score:", purity)
+#Davies-Bouldin Score
+davies_bouldin = davies_bouldin_score(X, y_kmeans)
+print("Davies-Bouldin Score:", davies_bouldin)
 
 # Visualização dos clusters
 plt.scatter(X[y_kmeans == 0, 0], X[y_kmeans == 0, 1], s = 100, c = 'purple', label = 'Iris-setosa')
